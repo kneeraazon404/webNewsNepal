@@ -17,7 +17,7 @@ class Post(models.Model):
     photo_2 = models.ImageField(upload_to="photos/%Y/%m/%d/", blank=True)
     photo_3 = models.ImageField(upload_to="photos/%Y/%m/%d/", blank=True)
     video = models.FileField(upload_to="videos/%Y/%m/%d/", blank=True)
-    yt_video = EmbedVideoField(max_length=140, default="SOME STRING", blank=True)
+    yt_video = EmbedVideoField(max_length=140, blank=True)
     text = models.TextField(blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 

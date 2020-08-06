@@ -1,21 +1,27 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-    <div class="content-section lg:flex rounded-lg h-auto w-full bg-green-700 justify-evenly items-center mb-4 mt-4 p-4">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Now</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info ml-2 mt-2 text-red-800 border-2 p-2" type="submit">नयाँ Account</button>
-            </div>
-        </form>
-        <div class="border-top pt-3">
-            <small  class="text-red-800 lg:text-3xl p-1 bg-aqua">
-                Already Have An Account? <a class="ml-2 border-2 p-2" href="{%  url 'login' %}">Login</a>
-            </small>
-        </div>
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
+<div
+  class="content-section lg:flex rounded-lg h-auto w-full bg-green-700 justify-evenly items-center mb-4 mt-4 p-4"
+>
+  <form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">नयाँ-खाता बनाउनुहोस</legend>
+      {{ form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <button
+        class="btn btn-outline-info ml-2 mt-2 text-red-800 border-2 p-2"
+        type="submit"
+      >
+        नयाँ-खाता
+      </button>
     </div>
+  </form>
+  <div class="border-top pt-3">
+    <small class="text-red-800 lg:text-3xl p-1 bg-aqua">
+      पहिलै खाता  बनाउनुभाकोछ ?
+      <a class="ml-2 border-2 p-2" href="{%  url 'login' %}">लग-इन</a>
+    </small>
+  </div>
+</div>
 {% endblock content %}
