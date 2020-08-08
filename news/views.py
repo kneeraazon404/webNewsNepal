@@ -60,7 +60,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         ["karkinirajan1999@gmail.com"],
     )
     email.fail_silently = True
-    email.send()
+    # email.send()
 
     def form_valid(self, form):
         form.instance.author = self.request.user

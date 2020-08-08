@@ -1,65 +1,56 @@
-{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
-<div class="content-section lg:flex rounded-lg h-auto w-full bg-green-700 justify-evenly items-center mb-4 mt-4 p-4">
-    <form method="POST">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">लग-इन</legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info border-2 p-1  bg-blue-100 mt-1" type="submit">लग-इन</button>
+{% extends 'base.html' %}
+
+<!--  -->
+{% block title %} | Account Login
+<!--  -->
+
+{% endblock %}
+
+<!--  -->
+{%block content %}
+<section id="login" class="bg-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h4><i class="fas fa-sign-in-alt"></i> Login</h4>
+          </div>
+          <div class="card-body">
+            <!-- Alerts -->
+            {% include 'partials/_alerts.html' %}
+            <form action="{% url 'login' %}" method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="password2">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  required
+                />
+              </div>
+
+              <input
+                type="submit"
+                value="Login"
+                class="btn btn-secondary btn-block"
+              />
+            </form>
+          </div>
         </div>
-    </form>
-    <div class="border-top pt-3 text-blue-900 text-2xl">
-        <small class="text-muted">
-                 <a class="ml-2" href="{% url 'register' %}"><span class="text-red-800 text-xl border-2 p-1 bg-aqua">नयाँ-खाता बनाउनुहोस</a>
-                
-            </small>
-
-
+      </div>
     </div>
-    <div class="border-top pt-3 text-blue-900 text-2xl">
-        <small class="text-muted">
-            आफ्नो <a class="ml-2" href="{% url 'profile' %}"><span class="text-red-800  border-2 p-1 bg-aqua">Profile</span> हेर्नुहोस् </a>
-            </small>
-    </div>
-    <!-- <div class="">
-        <h1><a class="nav-item nav-link p-1 -m-1 text-xl text-red-600" href="#">New Post</a></h1>
-        <ul>
-            <li>
-                <a href="{% url 'post-create' %}">home</a>
-            </li>
-            <li>
-                <a href="national">national</a>
-            </li>
-            <li>
-                <a href="international">international</a>
-            </li>
-            <li>
-                <a href="entertainment">entertainment</a>
-            </li>
-            <li>
-                <a href="sports">sports</a>
-            </li>
-            <li>
-                <a href="blog">blog</a>
-            </li>
-            <li>
-                <a href="literature">literature</a>
-            </li>
-            <li>
-                <a href="trending">trending</a>
-            </li>
-            <li>
-                <a href="covid">covid</a>
-            </li>
-            <li>
-                <a href="politics">politis</a>
-            </li>
-        </ul>
-
-    </div>
-</div> -->
-
-</div>
-{% endblock content %}
+  </div>
+</section>
+{% endblock %}

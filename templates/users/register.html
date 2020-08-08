@@ -1,27 +1,87 @@
-{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
-<div
-  class="content-section lg:flex rounded-lg h-auto w-full bg-green-700 justify-evenly items-center mb-4 mt-4 p-4"
->
-  <form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-      <legend class="border-bottom mb-4">नयाँ-खाता बनाउनुहोस</legend>
-      {{ form|crispy }}
-    </fieldset>
-    <div class="form-group">
-      <button
-        class="btn btn-outline-info ml-2 mt-2 text-red-800 border-2 p-2"
-        type="submit"
-      >
-        नयाँ-खाता
-      </button>
+{% extends 'base.html' %}
+<!--  -->
+{% block title %} | Register Account
+<!--  -->
+{% endblock %}
+<!--  -->
+{% block content %}
+<section id="register" class="bg-light py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h4><i class="fas fa-user-plus"></i> Register</h4>
+          </div>
+          <div class="card-body">
+            <!-- Alerts -->
+            {% include 'partials/_alerts.html' %}
+            <form action="{% url 'register' %}" method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input
+                  type="text"
+                  name="first_name"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input
+                  type="text"
+                  name="last_name"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password2">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Confirm Password</label>
+                <input
+                  type="password"
+                  name="password2"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <input
+                type="submit"
+                value="Register"
+                class="btn btn-secondary btn-block"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-  </form>
-  <div class="border-top pt-3">
-    <small class="text-red-800 lg:text-3xl p-1 bg-aqua">
-      पहिलै खाता  बनाउनुभाकोछ ?
-      <a class="ml-2 border-2 p-2" href="{%  url 'login' %}">लग-इन</a>
-    </small>
   </div>
-</div>
-{% endblock content %}
+</section>
+{% endblock %}

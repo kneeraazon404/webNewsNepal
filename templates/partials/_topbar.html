@@ -3,6 +3,9 @@
   href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
   rel="stylesheet"
 />
+<link
+href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"  rel="stylesheet"
+/>
 <header class="header-area">
   <!-- Top Header Area -->
   <div class="top-header-area">
@@ -25,10 +28,19 @@
             <!-- Login Search Area -->
             <div class="login-search-area d-flex align-items-center">
               <!-- Login -->
+             
+              {% if user.is_authenticated %}
+               <div class="login d-flex">
+                <a href="{% url 'logout' %}">Logout </a>
+                <a href="{% url 'profile' %}">Profile</a>
+             </div>
+             {% else %}
               <div class="login d-flex">
-                <a href="{% url 'login' %}">लग-इन</a>
-                <a href="{% url 'register' %}">नयाँ-खाता</a>
-              </div>
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+                </div>
+            {% endif %}
+            </div>
             </div>
           </div>
         </div>

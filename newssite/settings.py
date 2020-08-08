@@ -18,6 +18,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "news.apps.NewsConfig",
+    "contacts",
     "crispy_forms",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -66,7 +67,7 @@ WSGI_APPLICATION = "newssite.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "news",
+        "NAME": "newsdb",
         "USER": "postgres",
         "PASSWORD": "karki582465",
         "HOST": "localhost",
@@ -124,3 +125,7 @@ STATIC_URL = "/static/"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 LOGIN_REDIRECT_URL = "home"
 # LOGIN_URL="login"
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {messages.ERROR: "danger"}
