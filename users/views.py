@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
-from contacts.models import Contact
+from news.models import Contact
 
 
 def register(request):
@@ -80,3 +80,4 @@ def profile(request):
 
     context = {"contacts": user_contacts}
     return render(request, "users/profile.html", context)
+

@@ -32,10 +32,3 @@ class Comment(models.Model):
     def __str__(self):
         return f"{self.post.title}-{self.name}"
 
-
-class Subscription(models.Model):
-    email = models.EmailField(max_length=150)
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.email

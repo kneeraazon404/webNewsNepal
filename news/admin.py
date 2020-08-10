@@ -15,6 +15,8 @@ from .models import (
     Health,
     Business,
     Education,
+    Contact,
+    Subscription,
 )
 
 admin.site.register(Post)
@@ -31,7 +33,8 @@ admin.site.register(Tech)
 admin.site.register(Health)
 admin.site.register(Business)
 admin.site.register(Education)
-
+admin.site.register(Contact)
+admin.site.register(Subscription)
 
 # admin.site.register(Comment)
 

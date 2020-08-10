@@ -18,7 +18,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "news.apps.NewsConfig",
-    "contacts",
     "crispy_forms",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -134,7 +133,7 @@ EMAIL_HOST_PASSWORD = os.environ.get("password")
 STATIC_URL = "/static/"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 LOGIN_REDIRECT_URL = "home"
-# LOGIN_URL="login"
+LOGIN_URL = "login"
 
 from django.contrib.messages import constants as messages
 
