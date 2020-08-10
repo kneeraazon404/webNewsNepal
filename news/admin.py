@@ -11,7 +11,10 @@ from .models import (
     LifeStyle,
     Blog,
     Literature,
-    Trending,
+    Tech,
+    Health,
+    Business,
+    Education,
 )
 
 admin.site.register(Post)
@@ -22,9 +25,12 @@ admin.site.register(Sports)
 admin.site.register(Politics)
 admin.site.register(Entertainment)
 admin.site.register(LifeStyle)
-admin.site.register(Trending)
-admin.site.register(Blog)
 admin.site.register(Literature)
+admin.site.register(Blog)
+admin.site.register(Tech)
+admin.site.register(Health)
+admin.site.register(Business)
+admin.site.register(Education)
 
 
 # admin.site.register(Comment)

@@ -18,28 +18,63 @@ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min
             <!-- Logo -->
             <div class="logo">
               <a href="{% url 'home' %}">
-                <h1 class="d-none d-lg-block font-weight-bolder">
+                <h2 class="d-none d-lg-block font-weight-bolder">
                   The Web News Nepal,
                   <span class="font-bold">Nepal's Online Newspaper</span>
-                </h1></a
+                </h2></a
               >
             </div>
 
-            <!-- Login Search Area -->
-            <div class="login-search-area d-flex align-items-center">
-              <!-- Login -->
-             
-              {% if user.is_authenticated %}
-               <div class="login d-flex">
-                <a href="{% url 'logout' %}">Logout </a>
-                <a href="{% url 'profile' %}">Profile</a>
-             </div>
-             {% else %}
-              <div class="login d-flex">
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'register' %}">Register</a>
-                </div>
-            {% endif %}
+            <div class="navbar-expand-lg navbar-dark d-flex d-sm-flex">
+              <div class="container">
+                  <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                      <li
+                      {% if 'profile' in request.path %}
+                        class="nav-item active text-black mr-3"
+                      {% else %}
+                        class="nav-item  active mr-3"
+                      {% endif %}
+                      >
+                        <a class="nav-link" href="{% url 'profile' %}">
+                        Profile</a>
+                      </li>
+                      <li class="nav-item active mr-3">
+                        <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                          <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                        <form action="{% url 'logout' %}" method="POST" id="logout">
+                          {% csrf_token %}
+                          <input type="hidden">
+                        </form>
+                      </li>
+                    {% else %}
+                      <li
+                      {% if 'register' in request.path %}
+                        class="nav-item active mr-3"
+                      {% else %}
+                        class="nav-item active  mr-3"
+                      {% endif %}
+                      >
+                        <a class="nav-link" href="{% url 'register' %}">
+                          Register</a>
+                      </li>
+                      <li
+                      {% if 'login' in request.path %}
+                        class="nav-item active mr-3"
+                      {% else %}
+                        class="nav-item  active mr-3"
+                      {% endif %}
+                      >
+                        <a class="nav-link" href="{% url 'login' %}">
+                          <i class="fas fa-sign-in-alt"></i>
+          
+                          Login</a>
+                      </li>
+                    {% endif %}
+                  </ul>
+               
+              </div>
             </div>
             </div>
           </div>
@@ -54,17 +89,15 @@ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min
       <div class="container">
         <!-- Menu -->
         <nav class="classy-navbar justify-content-between" id="newspaperNav">
-          <!-- Logo -->
-          <div class="logo">
-            <a href="#"><img src="img/core-img/logo.png" alt="" /></a>
-          </div>
 
           <!-- Navbar Toggler -->
-          <div class="classy-navbar-toggler">
+          <div class="classy-navbar-toggler bg-black">
             <span class="navbarToggler"
               ><span></span><span></span><span></span
             ></span>
           </div>
+
+          
 
           <!-- Menu -->
           <div class="classy-menu">
@@ -78,26 +111,33 @@ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min
             <!-- Nav Start -->
             <div class="classynav">
               <ul>
-                <li class="active">
+                
+                  <li>
+
                   <a href="{% url 'home' %}">गृहपृष्ठ</a>
+                    
+                  </li>
                 </li>
-                <li><a href="{% url 'home' %}">समाचार</a></li>
-                <li><a href="{% url 'national' %}">देश</a></li>
+           
+                <li><a href="{% url 'national' %}">राष्ट्रीय</a></li>
+                <li><a href="{% url 'international' %}">अंतरराष्ट्रीय</a></li>
                 <li><a href="{% url 'politics' %}">राजनीति</a></li>
-                <li><a href="{% url 'home' %}">विजनेस</a></li>
-                <li><a href="{% url 'home' %}">प्रवास</a></li>
+                <li><a href="{% url 'business' %}">विजनेस</a></li>
+                <li><a href="{% url 'lifestyle' %}">जीवनशैली</a></li>
                 <li><a href="{% url 'sports' %}">खेलकुद</a></li>
-                <li><a href="{% url 'international' %}">प्रदेश</a></li>
                 <li><a href="{% url 'entertainment' %}">मनोरञ्जन</a></li>
-                <li><a href="{% url 'home' %}">शिक्षा</a></li>
-                <li><a href="{% url 'home' %}">स्वास्थ्य</a></li>
-                <li><a href="{% url 'home' %}">विज्ञान/प्रविधि </a></li>
-                <li><a href="{% url 'home' %}">बिचार</a></li>
+                <li><a href="{% url 'education' %}">शिक्षा</a></li>
+                <li><a href="{% url 'health' %}">स्वास्थ्य</a></li>
+                <li><a href="{% url 'literature' %}">साहित्य</a></li>
+                <li><a href="{% url 'tech' %}">विज्ञान/प्रविधि </a></li>
+                <li><a href="{% url 'blog' %}">बिचार</a></li>
                 <li><a href="{% url 'covid' %}">Covid-19</a></li>
+                {% if user.is_authenticated%}
                 <li><a href="{% url 'post-create' %}">नयाँ-पोस्ट</a></li>
+                {% else%}
                 <li><a href="{% url 'home' %}">contact-us</a></li>
-              </ul>
-            </div>
+
+                {% endif%}
             <!-- Nav End -->
           </div>
         </nav>

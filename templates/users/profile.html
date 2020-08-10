@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 <!--  -->
-{% block title %} | User Dashboard
+{% block title %} | User Profile
 <!--  -->
 {% endblock %}
 <!--  -->
@@ -10,7 +10,7 @@
   <div class="container">
     <div class="row text-center">
       <div class="col-md-12">
-        <h1 class="display-4">User Profile</h1>
+        <h1 class="display-4">{{user.first_name}}'s Profile</h1>
         <p class="lead">Manage your WebNewsNepal account</p>
       </div>
     </div>

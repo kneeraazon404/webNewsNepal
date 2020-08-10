@@ -1,22 +1,26 @@
 {% extends "base.html" %}
 <!--  -->
-{% load embed_video_tags %} {% block content %}
+{% load embed_video_tags %}
+{% comment %}  {% endcomment %}
+ {% block content %}
 <!-- CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous" />
+
+ <div class="container">
+
 
 <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" />
-    <video width="400" controls>
-    <source src="{{ object.video.url }}" type="video/mp4" />
-    <img class="rounded-circle article-img" src="{{ object.photo_1.url }}" />
-    <img class="rounded-circle article-img" src="{{ object.photo_2.url }}" />
-  </video>
+  
+    <img class=" article-img" src="{{ object.photo_0.url }}" />
+    <img class=" article-img" src="{{ object.photo_1.url }}" />
+    
+  
     <div class="media-body">
+            <p class="article-content">{{ object.address_month_day }}</p>
+    '
         <div class="article-metadata">
             <a class="mr-2" href="#">{{ object.title }}</a>
-            <p class="article-content">{{ object.address_month_day }}</p>
         </div>
-        <h2 class="article-title">{{ object.text }}</h2>
+        <h2 class="article-title">{{ object.body }}</h2>
         {% if object.author == user %}
         <div>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a
@@ -104,6 +108,7 @@
 <!--  -->
 {% endif %}
 
+</div>
 <!--  -->
 <!-- JS, Popper.js, and jQuery -->
 

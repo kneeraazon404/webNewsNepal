@@ -5,12 +5,15 @@ from .models import (
     International,
     Politics,
     Literature,
-    Trending,
     Blog,
     Sports,
     Entertainment,
     Covid,
     LifeStyle,
+    Tech,
+    Health,
+    Education,
+    Business,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
@@ -24,7 +27,7 @@ from django.views.generic import (
 
 class PostListView(ListView):
     model = Post
-    template_name = "news/news.html"
+    template_name = "news/home.html"
     ordering = ["-timestamp"]
     context_object_name = "posts"
 
@@ -139,7 +142,22 @@ def literature(request):
     return render(request, "news/literature.html", context)
 
 
-def trending(request):
-    context = {"posts": Trending.objects.all()}
-    return render(request, "news/trending.html", context)
+def business(request):
+    context = {"posts": Business.objects.all()}
+    return render(request, "news/business.html", context)
+
+
+def education(request):
+    context = {"posts": Education.objects.all()}
+    return render(request, "news/education.html", context)
+
+
+def health(request):
+    context = {"posts": Health.objects.all()}
+    return render(request, "news/health.html", context)
+
+
+def tech(request):
+    context = {"posts": Tech.objects.all()}
+    return render(request, "news/tech.html", context)
 

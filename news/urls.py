@@ -23,6 +23,9 @@ urlpatterns = [
     path("lifestyle/", views.lifestyle, name="lifestyle"),
     path("blog/", views.blog, name="blog"),
     path("literature/", views.literature, name="literature"),
-    path("trending/", views.trending, name="trending"),
+    path("trending/", views.health, name="health"),
+    path("trending/", views.education, name="education"),
+    path("trending/", views.business, name="business"),
+    path("trending/", views.tech, name="tech"),
 ]
 

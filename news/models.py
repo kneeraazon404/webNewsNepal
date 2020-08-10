@@ -56,13 +56,26 @@ class LifeStyle(Post):
     pass
 
 
-class Trending(Post):
-    pass
-
-
 class Blog(Post):
     pass
 
 
 class Literature(Post):
     pass
+
+
+class Tech(Post):
+    pass
+
+
+class Health(Post):
+    pass
+
+
+class Education(Post):
+    pass
+
+
+class Business(Post):
+    pass
+

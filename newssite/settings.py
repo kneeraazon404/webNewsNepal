@@ -27,6 +27,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "embed_video",
+    "django_filters",
+    "ckeditor",
+    "ckeditor_uploader",
 ]
 
 MIDDLEWARE = [
@@ -67,15 +70,16 @@ WSGI_APPLICATION = "newssite.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "newsdb",
+        "NAME": "webnewsdb",
         "USER": "postgres",
-        "PASSWORD": "karki582465",
+        "PASSWORD": os.environ.get("ppass"),
         "HOST": "localhost",
     }
 }
 
 
-# Password validation
+# Password valid
+# ation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -110,12 +114,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+    "default": {"toolbar": "full", "height": 300, "width": "100%",},
+}
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "karkinirajan1999@gmail.com"
-EMAIL_HOST_PASSWORD = "WkYrMSD0wed18ekG4XUM8hbK5cgLLISlUo2qNAV6lcmCd5IkvRb7DmG"
+EMAIL_HOST_USER = os.environ.get("email")
+EMAIL_HOST_PASSWORD = os.environ.get("password")
 
 # LOGIN_URL = "login"
 # Static files (CSS, JavaScript, Images)

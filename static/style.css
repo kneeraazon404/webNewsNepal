@@ -529,7 +529,7 @@ textarea:focus {
   width: 100%;
   z-index: 100;
   height: 80px;
-  border-bottom: 1px solid #d0d5d8;
+  border-bottom: 1px solid #000000;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .header-area .newspaper-main-menu {
@@ -538,12 +538,12 @@ textarea:focus {
 }
 @media only screen and (max-width: 767px) {
   .header-area .newspaper-main-menu {
-    background-color: #152535;
+    background-color: #0e8a52;
     height: 70px;
   }
 }
 .header-area .newspaper-main-menu .classy-nav-container {
-  background-color: #02031c;
+  background-color: #0e8a52;
   color: white;
 }
 .header-area .newspaper-main-menu .classy-navbar {
@@ -559,7 +559,7 @@ textarea:focus {
   display: none;
 }
 .header-area .newspaper-main-menu .classy-navbar .logo a {
-  display: block;
+  display: flex;
   max-width: 160px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -570,7 +570,6 @@ textarea:focus {
 @media only screen and (max-width: 767px) {
   .header-area .newspaper-main-menu .classy-navbar .logo {
     display: block;
-    background: white;
   }
 }
 .header-area .newspaper-main-menu .classy-navbar .classynav ul li a {
@@ -579,14 +578,14 @@ textarea:focus {
 .header-area .newspaper-main-menu .classy-navbar .classynav ul li a:hover,
 .header-area .newspaper-main-menu .classy-navbar .classynav ul li a:focus {
   font-weight: 500;
-  color: #ee002d;
+  color: #ffffff;
 }
 .header-area .newspaper-main-menu .classy-navbar .classynav > ul > li > a {
   text-transform: capitalize;
   padding: 12px 12px 11px;
   background-color: transparent;
   line-height: 1;
-  color: #dfdfdf;
+  color: black;
   font-weight: 500;
 }
 .header-area .newspaper-main-menu .classy-navbar .classynav > ul > li > a:hover,
@@ -597,7 +596,8 @@ textarea:focus {
   > ul
   > li
   > a:focus {
-  color: #1c1c1c;
+  color: #580c0c;
+  font-size: medium;
 }
 .header-area
   .newspaper-main-menu
@@ -608,7 +608,7 @@ textarea:focus {
   > a {
   position: relative;
   z-index: 1;
-  color: white;
+  color: #000000;
 }
 .header-area
   .newspaper-main-menu
@@ -617,10 +617,9 @@ textarea:focus {
   > ul
   > li.active
   > a::before {
-  background-color: #02031c;
+  background-color: #f7f7f7;
   width: 100%;
   height: 3px;
-  color: black;
   position: absolute;
   top: -26px;
   left: 0;
@@ -636,7 +635,6 @@ textarea:focus {
     > li.active
     > a::before {
     display: none;
-    color: black;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -651,23 +649,18 @@ textarea:focus {
   }
 }
 .header-area .is-sticky #stickyMenu {
-  background-color: #02031c;
+  background-color: #fff;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
   border-bottom: none;
-  font-size: medium;
-  color: white;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .header-area .is-sticky #stickyMenu {
-    background-color: #02031c;
-    color: white;
+    background-color: #152535;
   }
 }
 @media only screen and (max-width: 767px) {
   .header-area .is-sticky #stickyMenu {
-    background-color: #02031c;
-    color: white;
-    text-emphasis: bold;
+    background-color: #152535;
   }
 }
 
@@ -732,7 +725,7 @@ textarea:focus {
 }
 .hero-area .breaking-news-area .ticker ul li a {
   display: block;
-  font-size: 14px;
+  font-size: 18px;
   color: #152535;
   height: 38px;
   line-height: 38px;
