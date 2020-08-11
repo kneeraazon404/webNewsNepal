@@ -28,5 +28,6 @@ urlpatterns = [
     path("trending/", views.business, name="business"),
     path("trending/", views.tech, name="tech"),
     path("contact/", views.contact, name="contact"),
+    path("subscribe/", views.subscribe, name="subscribe"),
 ]
 

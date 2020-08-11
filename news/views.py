@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 from .models import (
     Post,
     National,
@@ -18,6 +19,7 @@ from .models import (
     Education,
     Business,
     Contact,
+    Subscription,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
@@ -181,7 +183,7 @@ def contact(request):
             has_contacted = Contact.objects.all().filter(user_id=user_id)
             if has_contacted:
                 messages.error(request, "You have already sent us a message")
-                return redirect("/news/contact.html")
+                return redirect("/")
 
         contact = Contact(
             name=name, email=email, phone=phone, message=message, user_id=user_id,
@@ -195,4 +197,24 @@ def contact(request):
 
         return redirect("/")
 
-    return render(request, "news/contact.html")
+    return render(request, "contact/contact.html")
+
+
+def subscribe(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        email = request.POST["email"]
+
+        def validateEmail(email):
+            try:
+                validate_email(email)
+                return True
+            except ValidationError:
+                return False
+
+        subscribers = Subscription(name=name, email=email)
+        subscribers.save()
+        messages.success(request, "Thank You For Subscription")
+
+        return redirect("/home/")
+

@@ -10,68 +10,97 @@ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min
   <!-- Top Header Area -->
   <div class="top-header-area">
     <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="top-header-content d-flex align-items-center justify-content-between">
+                    <!-- Logo -->
+                    <div class="logo">
+                      <a href="{% url 'home' %}">
+                        <h2 class="d-flex d-lg-block font-weight-bolder">
+                          The Web News Nepal
+                         
+                        </h2>
+                        
+                        <span><h5>Nepal's Online Newspaper</h5></span>
+                        </a
+                      >
+                    </div>
+
+                    <!-- Login Search Area -->
+                    <div class="login-search-area d-flex align-items-center">
+                        <!-- Login -->
+                        <div class="login d-flex">
+                          {% if user.is_authenticated %}
+                          <ul>
+                        <a 
+                          {% if 'profile' in request.path %}
+                            class="nav-item active text-black mr-3"
+                          {% else %}
+                            class="nav-item  active mr-3"
+                          {% endif %}
+                          >
+                            <a class="nav-link" href="{% url 'profile' %}">
+                            Profile</a>
+                          </a>
+                          <a class="nav-item active mr-3">
+                            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                              <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                            <form action="{% url 'logout' %}" method="POST" id="logout">
+                              {% csrf_token %}
+                              <input type="hidden">
+                            </form>
+                          </a>
+                        {% else %}
+                          <a
+                          {% if 'register' in request.path %}
+                            class="nav-item active mr-3"
+                          {% else %}
+                            class="nav-item active  mr-3"
+                          {% endif %}
+                          >
+                            <a class="nav-link" href="{% url 'register' %}">
+                              Register</a>
+                          </a>
+                          <a
+                          {% if 'login' in request.path %}
+                            class="nav-item active mr-3"
+                          {% else %}
+                            class="nav-item  active mr-3"
+                          {% endif %}
+                          >
+                            <a class="nav-link" href="{% url 'login' %}">
+                              <i class="fas fa-sign-in-alt"></i>
+              
+                              Login</a>
+                          </a>
+                        </ul>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+<!-- </div>
+  <div class="top-header-area">
+    <div class="container">
       <div class="row">
         <div class="col-12">
           <div
             class="top-header-content d-flex align-items-center justify-content-between"
           >
-            <!-- Logo -->
+            
             <div class="logo">
-              <a href="{% url 'home' %}">
-                <h2 class="d-none d-lg-block font-weight-bolder">
-                  The Web News Nepal,
-                  <span class="font-bold">Nepal's Online Newspaper</span>
-                </h2></a
-              >
+              
             </div>
 
             <div class="navbar-expand-lg navbar-dark d-flex d-sm-flex">
               <div class="container">
                   <ul class="navbar-nav ml-auto">
-                    {% if user.is_authenticated %}
-                      <li
-                      {% if 'profile' in request.path %}
-                        class="nav-item active text-black mr-3"
-                      {% else %}
-                        class="nav-item  active mr-3"
-                      {% endif %}
-                      >
-                        <a class="nav-link" href="{% url 'profile' %}">
-                        Profile</a>
-                      </li>
-                      <li class="nav-item active mr-3">
-                        <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
-                          <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
-                        <form action="{% url 'logout' %}" method="POST" id="logout">
-                          {% csrf_token %}
-                          <input type="hidden">
-                        </form>
-                      </li>
-                    {% else %}
-                      <li
-                      {% if 'register' in request.path %}
-                        class="nav-item active mr-3"
-                      {% else %}
-                        class="nav-item active  mr-3"
-                      {% endif %}
-                      >
-                        <a class="nav-link" href="{% url 'register' %}">
-                          Register</a>
-                      </li>
-                      <li
-                      {% if 'login' in request.path %}
-                        class="nav-item active mr-3"
-                      {% else %}
-                        class="nav-item  active mr-3"
-                      {% endif %}
-                      >
-                        <a class="nav-link" href="{% url 'login' %}">
-                          <i class="fas fa-sign-in-alt"></i>
-          
-                          Login</a>
-                      </li>
-                    {% endif %}
+                    
                   </ul>
                
               </div>
@@ -80,8 +109,8 @@ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
 
   <!-- Navbar Area -->
   <div class="newspaper-main-menu" id="stickyMenu">

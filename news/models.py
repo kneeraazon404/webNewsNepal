@@ -93,8 +93,36 @@ class Contact(models.Model):
 
 
 class Subscription(models.Model):
+    name = models.CharField(max_length=100, default=None)
     email = models.EmailField(max_length=150)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.email
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    body = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+
+def get_comment(post_id):
+    post = Post.objects.get(id=post_id)
+    comments = Comment.objects.filter(post=post).order_by("-id")[:5]
+    return comments
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    like = models.BooleanField(default=False)
+
+
+def if_liked(request, id):
+    is_liked = Like.objects.filter(post=id).filter(user=request.user)
+    if is_liked:
+        return True
+    else:
+        return False
