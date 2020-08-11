@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
@@ -36,6 +37,7 @@ class PostListView(ListView):
     template_name = "news/home.html"
     ordering = ["-timestamp"]
     context_object_name = "posts"
+    paginator = Paginator(context_object_name, 3)
 
 
 class PostDetailView(DetailView):
