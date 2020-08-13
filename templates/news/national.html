@@ -36,11 +36,11 @@
 </section>
 <!-- Single Post -->
 
-{% if posts %} 
+{% if nationals %} 
 <!--  -->
-{% for post in posts %}
+{% for post in nationals %}
 <div class="container">
-<section id="posts" class="py-4 d-flex">
+<section id="nationals" class="py-4 d-flex">
   <div class="col-12 col-lg-4">
     <div class="single-blog-post">
       <div class="post-thumb">
@@ -60,11 +60,11 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      {% if posts.has_other_pages %}
+      {% if nationals.has_other_pages %}
       <ul class="pagination">
-        {% if posts.has_previous %}
+        {% if nationals.has_previous %}
         <li class="page-item">
-          <a href="?page={{posts.previous_page_number}}" class="page-link"
+          <a href="?page={{nationals.previous_page_number}}" class="page-link"
             >&laquo;</a
           >
         </li>
@@ -74,9 +74,9 @@
         </li>
         {% endif %}
         <!--  -->
-        {% for i in posts.paginator.page_range %} 
+        {% for i in nationals.paginator.page_range %} 
         <!--  -->
-        {% if posts.number == i %}
+        {% if nationals.number == i %}
         <!--  -->
         <li class="page-item active">
           <a class="page-link">{{i}}</a>
@@ -89,9 +89,9 @@
         <!--  -->
         {% endfor %}
         <!--  -->
-         {% if posts.has_next %}
+         {% if nationals.has_next %}
         <li class="page-item">
-          <a href="?page={{posts.next_page_number}}" class="page-link"
+          <a href="?page={{nationals.next_page_number}}" class="page-link"
             >&raquo;</a
           >
         </li>
@@ -112,7 +112,7 @@
 {% else %}
 <div class="container">
   <div class="col-md-12">
-    <h3>No posts Available</h3>
+    <h3>No nationals Available</h3>
   </div>
 </div>
 {% endif %}

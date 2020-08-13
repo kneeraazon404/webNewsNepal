@@ -4,6 +4,8 @@ from django.urls import reverse
 from embed_video.fields import EmbedVideoField
 from django.utils import timezone
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # from users.models import Profile
 class Post(models.Model):
@@ -12,13 +14,10 @@ class Post(models.Model):
     image_owner = models.ImageField(upload_to="media", blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     address_month_day = models.CharField(max_length=200)
-    photo_0 = models.ImageField(upload_to="photos/%Y/%m/%d/", blank=True)
-    photo_1 = models.ImageField(upload_to="photos/%Y/%m/%d/", blank=True)
-    photo_2 = models.ImageField(upload_to="photos/%Y/%m/%d/", blank=True)
-    photo_3 = models.ImageField(upload_to="photos/%Y/%m/%d/", blank=True)
+    photo_0 = models.ImageField(upload_to="photos/%Y/%m/%d/", default="placeholder.jpg")
     video = models.FileField(upload_to="videos/%Y/%m/%d/", blank=True)
     yt_video = EmbedVideoField(max_length=140, blank=True)
-    text = models.TextField(blank=True)
+    text = RichTextUploadingField(blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

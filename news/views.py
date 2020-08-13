@@ -1,34 +1,36 @@
-from django.shortcuts import render, redirect
+from django.conf import settings
 from django.contrib import messages
-from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from django.core.validators import validate_email
-from django.core.exceptions import ValidationError
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.mail import EmailMessage
+from django.core.paginator import Paginator
+from django.shortcuts import redirect, render
+from .forms import subForm
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
+
+from .forms import subForm
 from .models import (
-    Post,
-    National,
-    International,
-    Politics,
-    Literature,
     Blog,
-    Sports,
-    Entertainment,
-    Covid,
-    LifeStyle,
-    Tech,
-    Health,
-    Education,
     Business,
     Contact,
-    Subscription,
-)
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import (
-    ListView,
-    DetailView,
-    CreateView,
-    UpdateView,
-    DeleteView,
+    Covid,
+    Education,
+    Entertainment,
+    Health,
+    International,
+    LifeStyle,
+    Literature,
+    National,
+    Politics,
+    Post,
+    Sports,
+    Tech,
 )
 
 
@@ -44,26 +46,9 @@ class PostDetailView(DetailView):
     model = Post
 
 
-from django.core.mail import EmailMessage
-from django.conf import settings
-from django.template.loader import render_to_string
-
-
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = [
-        "title",
-        "post_owner",
-        "image_owner",
-        "address_month_day",
-        "author",
-        "text",
-        "photo_1",
-        "photo_2",
-        "photo_3",
-        "video",
-        "yt_video",
-    ]
+    fields = "__all__"
     email = EmailMessage(
         "Thank You For Subscription",
         "Body",
@@ -105,13 +90,13 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def national(request):
-    context = {"posts": National.objects.all()}
+    context = {"nationals": National.objects.all()}
     return render(request, "news/national.html", context)
 
 
 # Class BASED VIEWS END HERE
 def politics(request):
-    context = {"posts": Politics.objects.all()}
+    context = {"politics": Politics.objects.all()}
     return render(request, "news/politics.html", context)
 
 
@@ -121,7 +106,7 @@ def sports(request):
 
 
 def covid(request):
-    context = {"posts": Covid.objects.all()}
+    context = {"covids": Covid.objects.all()}
     return render(request, "news/covid.html", context)
 
 
@@ -131,42 +116,42 @@ def international(request):
 
 
 def entertainment(request):
-    context = {"posts": Entertainment.objects.all()}
+    context = {"entertainments": Entertainment.objects.all()}
     return render(request, "news/entertainment.html", context)
 
 
 def lifestyle(request):
-    context = {"posts": LifeStyle.objects.all()}
+    context = {"lifestyles": LifeStyle.objects.all()}
     return render(request, "news/lifestyle.html", context)
 
 
 def blog(request):
-    context = {"posts": Blog.objects.all()}
+    context = {"blogs": Blog.objects.all()}
     return render(request, "news/blog.html", context)
 
 
 def literature(request):
-    context = {"posts": Literature.objects.all()}
+    context = {"literatures": Literature.objects.all()}
     return render(request, "news/literature.html", context)
 
 
 def business(request):
-    context = {"posts": Business.objects.all()}
+    context = {"business": Business.objects.all()}
     return render(request, "news/business.html", context)
 
 
 def education(request):
-    context = {"posts": Education.objects.all()}
+    context = {"educations": Education.objects.all()}
     return render(request, "news/education.html", context)
 
 
 def health(request):
-    context = {"posts": Health.objects.all()}
+    context = {"healths": Health.objects.all()}
     return render(request, "news/health.html", context)
 
 
 def tech(request):
-    context = {"posts": Tech.objects.all()}
+    context = {"techs": Tech.objects.all()}
     return render(request, "news/tech.html", context)
 
 
@@ -203,20 +188,13 @@ def contact(request):
 
 
 def subscribe(request):
+    subs = subForm()
+    context = {"subs": subs}
     if request.method == "POST":
-        name = request.POST["name"]
-        email = request.POST["email"]
-
-        def validateEmail(email):
-            try:
-                validate_email(email)
-                return True
-            except ValidationError:
-                return False
-
-        subscribers = Subscription(name=name, email=email)
-        subscribers.save()
-        messages.success(request, "Thank You For Subscription")
-
-        return redirect("/home/")
+        subs = subForm(request.POST, request.FILES)
+        if subs.is_valid():
+            subs.save()
+            messages.success(request, "Thank You for Subscription")
+        return redirect("home")
+    return render(request, "news/home.html", context)
 

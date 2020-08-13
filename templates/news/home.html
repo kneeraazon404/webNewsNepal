@@ -10,68 +10,7 @@
 <!--  -->
 
 <!-- ##### Hero Area Start ##### -->
-<div class="hero-area">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-12 col-lg-8">
-        <!-- Breaking News Widget -->
-        <div class="breaking-news-area d-flex align-items-center">
-          <div class="news-title">
-            <p>ताजा समाचार</p>
-          </div>
-          <div id="breakingNewsTicker" class="ticker">
-            <ul>
-              {% if posts %}
-              <!--  -->
-              {% for post in posts %}
-              <li><a href="#">{{post.title}}</a></li>
-
-              <li>
-                <a href="#">{{post.title}}</a>
-              </li>
-              <li><a href="#">{{post.title}}</a></li>
-
-              {% endfor %}
-              <!--  -->
-              {% endif %}
-            </ul>
-          </div>
-        </div>
-
-        <!-- Breaking News Widget -->
-        <div class="breaking-news-area d-flex align-items-center mt-15">
-          <div class="news-title title2">
-            <p>बिचार</p>
-          </div>
-          <div id="internationalTicker" class="ticker">
-            <ul>
-              {% if posts %}
-              <!--  -->
-              {% for post in posts %}
-              <li><a href="#">{{post.title}}</a></li>
-
-              <li>
-                <a href="#">{{post.title}}</a>
-              </li>
-              <li><a href="#">{{post.title}}</a></li>
-
-              {% endfor %}
-              <!--  -->
-              {% endif %}
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Hero Add -->
-      <div class="col-12 col-lg-4">
-        <div class="hero-add">
-          <a target="_blank" href="https://twitter.com/kneeraazon"><img src="{% static 'img/add.png' %}" alt="" /></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{% include 'partials/_hero.html'%}
 <!-- ##### Hero Area End ##### -->
 
 <!-- ##### Featured Post Area Start ##### -->
@@ -475,20 +414,6 @@
             </a>
             <p>April 14, 2018</p>
           </div>
-        </div>
-
-        <!-- Newsletter Widget -->
-        <div class="newsletter-widget">
-          <h4>Newsletter</h4>
-          <p>
-            To stay updated with the latest news Subscribe to our newsletter
-          </p>
-          <form action="{% url 'home' %}" method="POST">
-            {% csrf_token %}
-            <input type="text" name="text" placeholder="Name" />
-            <input type="email" name="email" placeholder="Email" />
-            <button type="submit" class="btn w-100">Subscribe</button>
-          </form>
         </div>
       </div>
     </div>

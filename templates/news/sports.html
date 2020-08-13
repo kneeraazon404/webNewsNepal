@@ -14,7 +14,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h3>Latest National News</h1>
+        <h3>Latest posts News</h1>
         <hr>
       </div>
     </div>
@@ -29,7 +29,7 @@
         <li class="breadcrumb-item">
           <a href="{% url 'home'%}">Home</a>
         </li>
-        <li class="breadcrumb-item active text-black">National</li>
+        <li class="breadcrumb-item active text-black">posts</li>
       </ol>
     </nav>
   </div>
@@ -40,21 +40,26 @@
 <!--  -->
 {% for post in posts %}
 <div class="container">
-<section id="posts" class="py-4 d-flex">
-  <div class="col-12 col-lg-4">
-    <div class="single-blog-post">
+<section id="posts" class="py-3 d-flex">
+   <!-- Single Post -->
+   <div class="col-12 col-md-4">
+    <div class="single-blog-post style-3">
       <div class="post-thumb">
         <a href="#"><img src="{{post.photo_0.url}}" alt="" /></a>
       </div>
       <div class="post-data">
         <a href="#" class="post-title">
           <h6>
-            {{post.title}}
+           {{post.title |safe }}
           </h6>
         </a>
-        <div class="post-meta">
-          <div class="post-date"><a href="#">{{post.address_month_day}}</a></div>
-        </div>
+        <a href="#" class="post-title">
+          <p>
+           {{post.text | slice:":200"}}...
+           <a href="{% url 'post-detail' post.id %}">पुरै  पढ्नुहोस् </a>
+          </p>
+        </a>
+        
       </div>
     </div>
   </div>
@@ -126,10 +131,6 @@
 
 
 
-<!-- Breadcrumb -->
-
-
-<!-- posts -->
 
 
    

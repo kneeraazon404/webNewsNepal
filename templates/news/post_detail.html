@@ -1,115 +1,29 @@
 {% extends "base.html" %}
 <!--  -->
-{% load embed_video_tags %}
-{% comment %}  {% endcomment %}
- {% block content %}
-<!-- CSS only -->
-
- <div class="container">
-
-
+{% block content %}
 <article class="media content-section">
-  
-    <img class=" article-img" src="{{ object.photo_0.url }}" />
-    <img class=" article-img" src="{{ object.photo_1.url }}" />
-    
-  
-    <div class="media-body">
-            <p class="article-content">{{ object.address_month_day }}</p>
-    '
-        <div class="article-metadata">
-            <a class="mr-2" href="#">{{ object.title }}</a>
-        </div>
-        <h2 class="article-title">{{ object.body }}</h2>
-        {% if object.author == user %}
-        <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a
+  <img class="rounded-circle article-img" src="{{ object.image_owner.url }}" />
+  <div class="media-body">
+    <div class="article-metadata">
       >
-      <a
-        class="btn btn-danger btn-sm mt-1 mb-1"
-        href="{% url 'post-delete' object.id %}"
-        >Delete</a
-      >
+      <small class="text-muted">{{ object.timestamp|date:"F d, Y" }}</small>
+      {% if object.author == user %}
+      <div>
+        <a
+          class="btn btn-secondary btn-sm mt-1 mb-1"
+          href="{% url 'post-update' object.id %}"
+          >Update</a
+        >
+        <a
+          class="btn btn-danger btn-sm mt-1 mb-1"
+          href="{% url 'post-delete' object.id %}"
+          >Delete</a
+        >
+      </div>
+      {% endif %}
     </div>
-    {% endif %}
+    <h2 class="article-title">{{ object.title }}</h2>
+    <p class="article-content">{{ object.text | safe }}</p>
   </div>
 </article>
-
-<h1>Comments...</h1>
-<br />
-{% if not post.comments.all %}
-<h3>No comments Yet</h3>
-<br />
-{% else %}
-<button
-  class="btn-info w-32 btn-md p-2 rounded-md"
-  data-toggle="modal"
-  data-target="#inquiryModal"
->
-  <i class="fas fa-envelope-square"></i> Add Comment
-</button>
-
-<div class="modal fade" id="inquiryModal" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="inquiryModalLabel">
-          Enter your name and Comment
-        </h5>
-        <button type="button" class="close" data-dismiss="modal">
-          <span>&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST">
-          {% csrf_token %}
-
-          <div class="form-group">
-            <label for="name" class="col-form-label">Name:</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              class="form-control"
-              value=""
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="message" class="col-form-label">comment:</label>
-            <textarea
-              name="message"
-              id="message"
-              class="form-control"
-            ></textarea>
-          </div>
-          <hr />
-          <input
-            type="submit"
-            value="Post Comment"
-            class="btn btn-block btn-info"
-          />
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<br />
-{% for comment in post.comments.all %} {{comment.timestamp}}
-<!--  -->
-<br />
-{{comment.name}}
-<!--  -->
-<br />
-{{comment.body}}
-<!--  -->
-{%endfor%}
-<!--  -->
-{% endif %}
-
-</div>
-<!--  -->
-<!-- JS, Popper.js, and jQuery -->
-
 {% endblock content %}
