@@ -75,6 +75,10 @@ class Education(Post):
     pass
 
 
+class Youtube(models.Model):
+    yt_vid = EmbedVideoField(max_length=140, blank=True)
+
+
 class Business(Post):
     pass
 

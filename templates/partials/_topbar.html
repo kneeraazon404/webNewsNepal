@@ -135,7 +135,7 @@ href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min
                 <li><a href="{% url 'tech' %}">विज्ञान/प्रविधि </a></li>
                 <li><a href="{% url 'blog' %}">बिचार</a></li>
                 <li><a href="{% url 'covid' %}">Covid-19</a></li>
-                {% if user.is_authenticated%}
+                {% if user.is_superuser %}
                 <li><a href="{% url 'post-create' %}">नयाँ-पोस्ट</a></li>
                 {% else%}
                 <li><a href="{% url 'contact' %}">contact-us</a></li>

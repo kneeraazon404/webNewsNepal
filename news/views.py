@@ -155,7 +155,7 @@ def tech(request):
     return render(request, "news/tech.html", context)
 
 
-@login_required
+@login_required()
 def contact(request):
     if request.method == "POST":
         name = request.POST["name"]
@@ -167,10 +167,6 @@ def contact(request):
         # Check if user has contacted already
         if request.user.is_authenticated:
             user_id = request.user.id
-            has_contacted = Contact.objects.all().filter(user_id=user_id)
-            if has_contacted:
-                messages.error(request, "You have already sent us a message")
-                return redirect("/")
 
         contact = Contact(
             name=name, email=email, phone=phone, message=message, user_id=user_id,

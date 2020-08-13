@@ -1,56 +1,52 @@
 {% extends 'base.html' %}
 <!--  -->
+<!--  -->
+{% load crispy_forms_tags %}
+
+<!--  -->
 {% block title %} | User Profile
 <!--  -->
 {% endblock %}
 <!--  -->
 
 {% block content %}
-<section id="showcase-inner" class="py-5 text-white">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-md-12">
-        <h1 class="display-4">{{user.first_name}}'s Profile</h1>
-        <p class="lead">Manage your WebNewsNepal account</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Breadcrumb -->
-<section id="bc" class="mt-3">
+<div class="col-md-6 mx-auto">
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'home' %}"> <i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item active">Profile</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
   <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="{% url 'home' %}"> <i class="fas fa-home"></i> Home</a>
-        </li>
-        <li class="breadcrumb-item active">Profile</li>
-      </ol>
-    </nav>
-  </div>
-</section>
-
-<!-- Alerts -->
-{% include 'partials/_alerts.html' %}
-
-<section id="dashboard" class="py-4">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Welcome {{ user.username }}</h2>
-        {% if contacts %}
-        <table class="table">
-         
-              <td>
-                <a class="btn btn-light" href="{% url 'home' %}"
-                  >Go back To Home Page</a>
-            
-        {% else %}
-        <p>You have not made any inquiries</p>
-        {% endif %}
-      </div>
+    <div class="content-section">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!--  -->
+        {{ form|crispy }}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-4">
+            {{user.first_name}}'s Profile Info
+          </legend>
+          <div class="media">
+            <img
+              class="rounded-circle account-img"
+              src="{{ user.profile.image.url }}"
+            />
+          </div>
+          {{ u_form|crispy }} {{ p_form|crispy }}
+        </fieldset>
+        <div class="form-group">
+          <button class="btn btn-outline-info" type="submit">Update</button>
+        </div>
+      </form>
     </div>
   </div>
-</section>
+</div>
 {% endblock %}
