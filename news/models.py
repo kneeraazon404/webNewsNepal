@@ -2,12 +2,10 @@ from django.db import models
 from datetime import datetime
 from django.urls import reverse
 from embed_video.fields import EmbedVideoField
-from django.utils import timezone
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
-# from users.models import Profile
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     post_owner = models.CharField(max_length=200)

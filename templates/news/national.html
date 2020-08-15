@@ -9,19 +9,6 @@
 {% endblock%}
 <!--  -->
 {% block content%}
-
-<section id="showcase-inner " class="py-1   text-light">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h3>Latest National News</h1>
-        <hr>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <section id="bc" class="mt-1">
   <div class="container">
     <nav aria-label="breadcrumb">
@@ -29,100 +16,90 @@
         <li class="breadcrumb-item">
           <a href="{% url 'home'%}">Home</a>
         </li>
-        <li class="breadcrumb-item active text-black">National</li>
+        <li class="breadcrumb-item active text-black">Sports</li>
       </ol>
     </nav>
   </div>
 </section>
 <!-- Single Post -->
 
-{% if nationals %} 
-<!--  -->
-{% for post in nationals %}
-<div class="container">
-<section id="nationals" class="py-4 d-flex">
-  <div class="col-12 col-lg-4">
-    <div class="single-blog-post">
-      <div class="post-thumb">
-        <a href="#"><img src="{{post.photo_0.url}}" alt="" /></a>
-      </div>
-      <div class="post-data">
-        <a href="#" class="post-title">
-          <h6>
-            {{post.title}}
-          </h6>
-        </a>
-        <div class="post-meta">
-          <div class="post-date"><a href="#">{{post.address_month_day}}</a></div>
+<!-- ##### Editorial Post Area Start ##### -->
+<div class="editors-pick-post-area section-padding-80-50">
+  <div class="container">
+    <div class="row">
+      <!-- Editors Pick -->
+      <div class="col-12 col-md-12 col-lg-12">
+        <div class="section-heading">
+          <h6>Latest Sports News</h6>
         </div>
+
+        <div class="row">
+          <!-- Single Post -->
+          {% if posts %} {% for post in posts %}
+          <div class="col-12 col-lg-4">
+            <div class="single-blog-post">
+              <div class="post-thumb">
+                <a href="{% url 'post-detail'  post.id  %}"
+                  ><img src="{% static 'img/bg-img/6.jpg' %}" alt=""
+                /></a>
+              </div>
+              <div class="post-data">
+                <a href="{% url 'post-detail' post.id  %}" class="post-title">
+                  <h6>
+                    Orci varius natoque penatibus et magnis dis parturient
+                    montes.
+                  </h6>
+                </a>
+                <div class="post-meta">
+                  <div class="post-date">
+                    <a href="{% url 'post-detail' post.id %}"
+                      >February 11, 2018</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+          <!--  -->
+          {% endif %}
+          <!--  -->
+        </div>
+        {% if is_paginated %}
+        <!--  -->
+        {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a
+          class="btn btn-outline-info mb-4"
+          href="?page={{ page_obj.previous_page_number }}"
+          >Previous</a
+        >
+        {% endif %}
+        <!--  -->
+        {% for num in page_obj.paginator.page_range %}
+        <!--  -->
+        {% if page_obj.number == num %}
+        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%}
+        <a class="btn btn-outline-info mb-4" href="?page={{ num }}"
+          >{{ num }}</a
+        >
+        {% endif %} {% endfor %} {% if page_obj.has_next %}
+        <a
+          class="btn btn-outline-info mb-4"
+          href="?page={{ page_obj.next_page_number }}"
+          >Next</a
+        >
+        <a
+          class="btn btn-outline-info mb-4"
+          href="?page={{ page_obj.paginator.num_pages }}"
+          >Last</a
+        >
+        {% endif %} {% endif %}
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      {% if nationals.has_other_pages %}
-      <ul class="pagination">
-        {% if nationals.has_previous %}
-        <li class="page-item">
-          <a href="?page={{nationals.previous_page_number}}" class="page-link"
-            >&laquo;</a
-          >
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-          <a class="page-link">&laquo;</a>
-        </li>
-        {% endif %}
-        <!--  -->
-        {% for i in nationals.paginator.page_range %} 
-        <!--  -->
-        {% if nationals.number == i %}
-        <!--  -->
-        <li class="page-item active">
-          <a class="page-link">{{i}}</a>
-        </li>
-        {% else %}
-        <li class="page-item">
-          <a href="?page={{i}}" class="page-link">{{i}}</a>
-        </li>
-        {% endif %} 
-        <!--  -->
-        {% endfor %}
-        <!--  -->
-         {% if nationals.has_next %}
-        <li class="page-item">
-          <a href="?page={{nationals.next_page_number}}" class="page-link"
-            >&raquo;</a
-          >
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-          <a class="page-link">&raquo;</a>
-        </li>
-        {% endif %}
-      </ul>
-      {% endif %}
-    </div>
-  </div>
-</section>
 </div>
-
-{% endfor %}
-<!--  -->
-{% else %}
-<div class="container">
-  <div class="col-md-12">
-    <h3>No nationals Available</h3>
-  </div>
-</div>
-{% endif %}
-</div>
-{% endblock%} 
-
-
-
-
-
-
-
-
+{% endblock content %}
+<!-- ##### Editorial Post Area End ##### -->

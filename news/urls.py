@@ -5,6 +5,7 @@ from .views import (
     PostDetailView,
     PostCreateView,
     PostUpdateView,
+    SportListView,
     PostDeleteView,
 )
 
@@ -18,7 +19,7 @@ urlpatterns = [
     path("covid/", views.covid, name="covid"),
     path("politics/", views.politics, name="politics"),
     path("international/", views.international, name="international"),
-    path("sports/", views.sports, name="sports"),
+    path("sports/", views.SportListView.as_view(), name="sports"),
     path("entertainment/", views.entertainment, name="entertainment"),
     path("lifestyle/", views.lifestyle, name="lifestyle"),
     path("blog/", views.blog, name="blog"),

@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.mail import EmailMessage
-from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from .forms import subForm
 from django.views.generic import (
@@ -37,9 +36,9 @@ from .models import (
 class PostListView(ListView):
     model = Post
     template_name = "news/home.html"
-    ordering = ["-timestamp"]
     context_object_name = "posts"
-    paginator = Paginator(context_object_name, 3)
+    ordering = ["-timestamp"]
+    paginate_by = 6
 
 
 class PostDetailView(DetailView):
@@ -100,9 +99,12 @@ def politics(request):
     return render(request, "news/politics.html", context)
 
 
-def sports(request):
-    context = {"posts": Sports.objects.all()}
-    return render(request, "news/sports.html", context)
+class SportListView(PostListView):
+    model = Sports
+    template_name = "news/sports.html"
+    context_object_name = "sports"
+    ordering = ["-timestamp"]
+    paginate_by = 6
 
 
 def covid(request):
@@ -193,4 +195,3 @@ def subscribe(request):
             messages.success(request, "Thank You for Subscription")
         return redirect("home")
     return render(request, "news/home.html", context)
-

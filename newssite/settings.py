@@ -71,9 +71,9 @@ WSGI_APPLICATION = "newssite.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "webnewsdb",
+        "NAME": "news",
         "USER": "postgres",
-        "PASSWORD": os.environ.get("ppass"),
+        "PASSWORD": "karki582465",
         "HOST": "localhost",
     }
 }
