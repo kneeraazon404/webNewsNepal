@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect, render
-from .forms import subForm
+from .models import Newsletter
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -13,7 +13,6 @@ from django.views.generic import (
     UpdateView,
 )
 
-from .forms import subForm
 from .models import (
     Blog,
     Business,
@@ -186,12 +185,23 @@ def contact(request):
 
 
 def subscribe(request):
-    subs = subForm()
-    context = {"subs": subs}
     if request.method == "POST":
-        subs = subForm(request.POST, request.FILES)
-        if subs.is_valid():
-            subs.save()
-            messages.success(request, "Thank You for Subscription")
-        return redirect("home")
-    return render(request, "news/home.html", context)
+        name = request.POST["name"]
+        email = request.POST["email"]
+        user_id = request.POST["user_id"]
+
+        # Check if user has contacted already
+        if request.user.is_authenticated:
+            user_id = request.user.id
+            has_contacted = Newsletter.objects.all().filter(email=email)
+            if has_contacted:
+                messages.error(request, "You have already Subscribed to our Newsletter")
+                return redirect("/")
+        elif Newsletter.objects.filter(email=email).exists():
+            messages.error(request, "You have already Subscribed to our Newsletter")
+            return redirect("/")
+
+        sub = Newsletter(name=name, email=email, user_id=user_id)
+        messages.success(request, "Thank Your For Subscription")
+        sub.save()
+        return redirect("/")

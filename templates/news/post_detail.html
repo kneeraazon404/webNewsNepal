@@ -1,29 +1,58 @@
 {% extends "base.html" %}
 <!--  -->
 {% block content %}
-<article class="media content-section">
-  <img class="rounded-circle article-img" src="{{ object.image_owner.url }}" />
-  <div class="media-body">
-    <div class="article-metadata">
-      >
-      <small class="text-muted">{{ object.timestamp|date:"F d, Y" }}</small>
-      {% if object.author == user %}
-      <div>
-        <a
-          class="btn btn-secondary btn-sm mt-1 mb-1"
-          href="{% url 'post-update' object.id %}"
-          >Update</a
-        >
-        <a
-          class="btn btn-danger btn-sm mt-1 mb-1"
-          href="{% url 'post-delete' object.id %}"
-          >Delete</a
-        >
-      </div>
-      {% endif %}
-    </div>
-    <h2 class="article-title">{{ object.title }}</h2>
-    <p class="article-content">{{ object.text | safe }}</p>
+<!-- Page Content -->
+<section id="bc" class="mt-1">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb text-dark">
+        <li class="breadcrumb-item">
+          <a href="{% url 'home'%}">Home</a>
+        </li>
+        <li class="breadcrumb-item active text-black">
+          <a href="{% url 'sports'%}">Sports / {{object.title}}</a>
+        </li>
+      </ol>
+    </nav>
   </div>
-</article>
+</section>
+<div class="container">
+  <!-- Portfolio Item Heading -->
+
+  <!-- Portfolio Item Row -->
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+      <h3 class="my-1">{{object.title}}</h3>
+    </div>
+    <div class="col-md-4 my-2 mx-20 d-flex justify-between">
+      <img class="img-fluid" src="{{object.photo.url }}" alt="I did business" />
+    </div>
+    <div class="col-md-12 my-3">
+      <br />
+      <h4>{{object.address_day_month}}</h4>
+      <p>
+        {{object.text}}
+      </p>
+    </div>
+  </div>
+  <!-- /.row -->
+
+  {% if object.author == user %}
+  <div>
+    <a
+      class="btn btn-secondary btn-sm mt-1 mb-1"
+      href="{% url 'post-update' object.id %}"
+      >Update</a
+    >
+    <a
+      class="btn btn-danger btn-sm mt-1 mb-1"
+      href="{% url 'post-delete' object.id %}"
+      >Delete</a
+    >
+  </div>
+  {% endif %}
+  <!-- /.row -->
+</div>
+
+<!-- /.container -->
 {% endblock content %}

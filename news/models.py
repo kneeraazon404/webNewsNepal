@@ -12,7 +12,7 @@ class Post(models.Model):
     image_owner = models.ImageField(upload_to="media", blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     address_month_day = models.CharField(max_length=200)
-    photo_0 = models.ImageField(upload_to="photos/%Y/%m/%d/", default="placeholder.jpg")
+    photo = models.ImageField(upload_to="photos/%Y/%m/%d/", default="placeholder.jpg")
     video = models.FileField(upload_to="videos/%Y/%m/%d/", blank=True)
     yt_video = EmbedVideoField(max_length=140, blank=True)
     text = RichTextUploadingField(blank=True)
@@ -93,9 +93,10 @@ class Contact(models.Model):
         return self.name
 
 
-class Subscription(models.Model):
+class Newsletter(models.Model):
     name = models.CharField(max_length=100, default=None)
     email = models.EmailField(max_length=150)
+    user_id = models.IntegerField(blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

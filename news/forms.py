@@ -1,8 +1,9 @@
 from django import forms
-from .models import Subscription
+from .models import Newsletter
 
 
-class subForm(forms.ModelForm):
+class NewsletterForm(forms.ModelForm):
     class Meta:
-        model = Subscription
+        model = Newsletter
         fields = "__all__"
+
