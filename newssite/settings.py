@@ -71,7 +71,7 @@ WSGI_APPLICATION = "newssite.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "news",
+        "NAME": "newsdb",
         "USER": "postgres",
         "PASSWORD": "karki582465",
         "HOST": "localhost",
@@ -87,9 +87,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -118,7 +124,11 @@ USE_TZ = True
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_CONFIGS = {
-    "default": {"toolbar": "full", "height": 300, "width": "100%",},
+    "default": {
+        "toolbar": "full",
+        "height": 300,
+        "width": "100%",
+    },
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
