@@ -11,7 +11,7 @@ SECRET_KEY = "b8sn0hh2^ioc2&azos(nki^!jb3mie!9m&kwadj3%5$o0p2a0b"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["webnewsnepal.herokuapp.com"]
 
 
 # Application definition
