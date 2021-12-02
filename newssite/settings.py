@@ -13,7 +13,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["webnewsnepal.herokuapp.com"]
 
-
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Application definition
 
 INSTALLED_APPS = [
